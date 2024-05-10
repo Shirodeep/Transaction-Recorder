@@ -1,0 +1,29 @@
+{% extends 'layout.html' %} {% block content%}
+<br>
+<div class="container bg-light">
+    <div class="display-4"><div class="text-center">Add Khata Details</div></div>
+    <form action="{% url 'additems' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Norman John" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="amount">amount</label>
+            <input type="number" class="form-control" name="amount" id="amount" placeholder="000" required>
+        </div>
+        <div class="form-group">
+            <label for="is_gain">To Pay</label>
+            <input type="radio" name="is_gain" id="is_gain" value=1 required>
+            <br>
+            <label>To get </label>
+            <input type="radio" name="is_gain" id="is_gain" value="0"required>
+        </div>
+    <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+</div>
+
+{% endblock %}

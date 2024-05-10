@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% load static %}
+<h1 class="display-1 text-center">Personal Khata</h1>
+<br />
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-7 col-lg-5 container">
+      <img
+      style="align-items: center"
+      src="{% static 'images/khata.jpg'%}"
+      alt="might be image of khata"
+      width="200"
+      height="300"
+      />
+    </div>
+    <div class="col-sm-5 col-lg-6 container bg-light">
+      
+      <p>
+      In its traditional form, a khata is a physical ledger book where entries are manually recorded using pen and paper. Each transaction is meticulously documented, including details such as date, description of the transaction, amount, and the parties involved. These ledgers help business owners and accountants maintain accurate records of their financial activities, facilitating tracking of expenses, income, and outstanding balances.
+    </p>
+    <br />
+  </div>
+</div>
+</div>
+
+{% endblock %}

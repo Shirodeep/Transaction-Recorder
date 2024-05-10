@@ -1,0 +1,39 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="container-fluid p-3" id="collections">
+  {% if data|length != 0 %}
+  <div class="row">
+    <div class="col"><h1><strong>All your Remaining transaction</strong></h1></div>
+  </div>
+  <div class="d-flex flex-wrap" style="height: max-content">
+    {% for i in data %}
+    <a
+      class="items m-2"
+      href="/detail/{{i.id}}"
+      style="color: whitesmoke;background-color: {% if i.is_gain == 1 %} red; {% else %} green;{% endif %} text-decoration: none;border: 1px solid gray; border-radius: 15px;height:20vh;"
+    >
+      <div class="row p-1 text-center">
+        <div class="col">{{i.name}}</div>
+      </div>
+      <div class="row p-1">
+        <div class="col">रु {{i.amount}}</div>
+      </div>
+      <div class="row p-1">
+        <div class="col">
+          <div class="row">
+            <div class="col"></div>
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  <a href="{% url 'additems' %}" class="container-fluid"
+    ><button class="btn btn-outline-warning">ADD MORE</button></a
+  >
+  {%else %}
+  <h4 class="text-center">
+    Add to Your Khata <a href="{% url 'additems' %}"> from here ... </a>
+  </h4>
+  {% endif %}
+</div>
+{% endblock %}
