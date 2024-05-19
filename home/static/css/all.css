@@ -1,4 +1,8 @@
+body{
+    overflow-x: hidden;
+}
 li .active{
     background-color: rgb(197, 195, 197);
+    border-radius: 12px;
     border: black;
 }

@@ -1,23 +1,13 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div class="container">
-
-    <form action="#" method="post">
+{% if form.errors %}
+    there was error
+{% endif %}
+    <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="name">Username</label>
-            <input type="text" class="form-control" name="uname" id="uname" placeholder="Norman John" required>
-        </div>
         
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="000" required>
-        </div>
-        <div class="form-group">
-            <input type="checkbox" name="remember" id="remember" value=1 required>
-            <label for="remember">Remember Me</label>
-        </div>
-        <br>
+        {{form.as_p}}
         <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>

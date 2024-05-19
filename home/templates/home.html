@@ -9,13 +9,13 @@
     <a
       class="items m-2"
       href="/detail/{{i.id}}"
-      style="color: whitesmoke;background-color: {% if i.is_gain == 1 %} red; {% else %} green;{% endif %} text-decoration: none;border: 1px solid gray; border-radius: 15px;height:20vh;"
+      style="color: black;padding:0px 16px 0px 16px;text-decoration: none;border: 1px solid gray; border-radius: 15px;height:20vh;"
     >
       <div class="row p-1 text-center">
-        <div class="col">{{i.name}}</div>
+        <div class="col" style>{{i.name}}</div>
       </div>
       <div class="row p-1">
-        <div class="col">रु {{i.amount}}</div>
+        <div class="col" style="color: {% if i.is_gain == 1 %} red; {% else %} green;{% endif %}">रु {{i.amount}}</div>
       </div>
       <div class="row p-1">
         <div class="col">

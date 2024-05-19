@@ -22,7 +22,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="{% static 'css/all.css'%}" /> 
+    <link rel="stylesheet" href="{% static 'css/all.css'%}" />
     <!-- for jquery cdn-->
     <script
       src="https://code.jquery.com/jquery-3.7.0.js"
@@ -31,20 +31,22 @@
     ></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light p-3"
+      style="justify-content: space-between"
+    >
       <div class="col-lg-6">
         <a
           class="navbar-brand"
           href="{% url 'home'%}"
           style="
             font-weight: 20px;
-            font-size: 40px;
-            font-family: 'Lucida Console', Courier, monospace;
+            font-family: monospace;
           "
         >
           Personal Khata</a
         >
-      </div>  
+      </div>
       <button
         class="navbar-toggler"
         type="button"
@@ -62,24 +64,61 @@
       >
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <br>
+            <br />
             <a
-              class="nav-link navigation {% if request.path == '/' %} active {% endif %}"
+              class="nav-link navigation {% if request.path == '/home/' %} active {% endif %}"
               href="{% url 'home' %}"
               >Home</a
             >
           </li>
+
           <li class="nav-item">
-            <br>
+            <br />
             <a
-              class="nav-link navigation {% if request.path == '/about-us/' %} active {% endif %}"
+              class="nav-link navigation {% if request.path == '/home/about-us/' %} active {% endif %}"
               href="{% url 'about-us' %}"
               >About Us</a
             >
           </li>
+          
+          {% if user.is_authenticated %}
+          <div class="dropdown">
+            <br />
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Profile
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="{% url 'logout'%}">Logout</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+          {% else %} 
+          <li class="nav-item">
+            <br />
+            <a
+              class="nav-link navigation {% if request.path == '/accounts/login-user/' %} active {% endif %}"
+              href="{% url 'login' %}"
+              >Login</a
+            >
+          </li>
+          <li class="nav-item">
+            <br />
+            <a
+              class="nav-link navigation {% if request.path == '/accounts/register-user/' %} active {% endif %}"
+              href="{% url 'register' %}"
+              >Register</a
+            >
+          </li>
+          {% endif %}
         </ul>
-
-        
       </div>
     </nav>
   </body>
