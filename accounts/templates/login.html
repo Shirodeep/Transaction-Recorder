@@ -1,0 +1,49 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="container">
+  {% if messages %} 
+  {% for message in messages %} 
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>
+          {{message}}
+    </strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %} 
+  {%  endif %}
+  <form action="#" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        id="username"
+        placeholder="Norman John"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        id="password"
+        placeholder="000"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <input type="checkbox" name="remember" id="remember" value="1" />
+      <label for="remember">Remember Me</label>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+{% endblock %}
