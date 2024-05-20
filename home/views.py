@@ -6,7 +6,7 @@ def home(request):
     data = []
     if uname:
         try:
-            all = Debit.objects.all()
+            all = Debit.objects.filter(user_id=int(request.user.id))
             counter = 0
             for i in all:
                 if counter == 14:
@@ -27,20 +27,14 @@ def about(request):
     return render(request, 'aboutus.html', {'page_title': 'About'})
 
 def add_items(request):
-    uname = request.session.get('uname')
     if request.session.get('uname'):
-        data = {}
         try:
             if request.method == "POST":
                 name = request.POST.get('name')
                 amount = request.POST.get('amount')
                 is_gain = request.POST.get('is_gain')
-            data = {
-                'name': name,
-                'amount': amount,
-                'is_gain': is_gain
-            }
-            debit = Debit.objects.create(**data)
+            debit = Debit(name= name, amount= amount, is_gain= is_gain,  user= request.user)
+            debit.save()
             return redirect('../')
         except:
             pass
@@ -63,7 +57,7 @@ def details(request, id):
 def remove_item(request, id):
     if request.session.get('uname'):
         try: 
-            item = Debit.objects.get(id = id).delete()
+            item = Debit.objects.get(id = id, user_id= request.user).delete()
             return redirect('home')
         except:
             pass

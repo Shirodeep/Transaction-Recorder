@@ -1,6 +1,11 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div class="container">
+    {% if messages %}
+    {% for message in messages %}
+        <div style="font-weight:600;">{{message}}</div>
+    {% endfor %}
+    {% endif %}
 {% if form.errors %}
     there was error
 {% endif %}

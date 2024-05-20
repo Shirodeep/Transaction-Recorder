@@ -92,12 +92,10 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Profile
+              {{request.user}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="{% url 'logout'%}">Logout</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </div>
           {% else %} 

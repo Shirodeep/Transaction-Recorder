@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterUserForm
 from django.contrib import sessions
 
@@ -13,15 +12,14 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            request.session['uname'] = request.user
-            print(request.user)
+            request.session['uname'] = str(request.user)
             return redirect('home')
         else: 
-            messages.success(request, "Login failed")
+            messages.warning(request, "Login failed")
             return redirect('login')
     else:
         return render(request, 'login.html')
-
+    
 def register_user(request):
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
@@ -32,9 +30,13 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             messages.success(request, 'Registration success')
             return redirect('login')
+        else:
+            messages.error(request, "Form field is invalid")
     else:
         form = RegisterUserForm()
         return render(request, 'register.html', {'form': form})
+    messages.warning(request, "Registration failed")
+    return redirect('register')
 
 def logout_user(request):
     logout(request)
