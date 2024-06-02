@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'home',
     'accounts',
     'api',
+    'rest_framework',
+    'rest_framewoor_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,18 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+                'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+
 
 ROOT_URLCONF = 'loanrecorder.urls'
 
